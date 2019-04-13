@@ -8,7 +8,7 @@
 		<version>2.1.4.RELEASE</version>
 		<relativePath/>
 	</parent>
-  	<groupId>cyxtera-test</groupId>
+  	<groupId>com.cyxtera</groupId>
   	<artifactId>cyxtera-test</artifactId>
   	<version>0.0.1-SNAPSHOT</version>
   	<name>Cyxtera Test</name>
