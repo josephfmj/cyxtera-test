@@ -26,8 +26,6 @@ public class OperationContext {
 	private String auditoryId;
 	
 	private List<BigDecimal> operands;
-	
-	private OperationType operationType;
 
 	public String getSessionId() {
 		return sessionId;
@@ -52,13 +50,13 @@ public class OperationContext {
 	public void setOperands(List<BigDecimal> operands) {
 		this.operands = operands;
 	}
-
-	public OperationType getOperationType() {
-		return operationType;
+	
+	public void attachOperand(BigDecimal value) {
+		this.operands.add(value);
 	}
-
-	public void setOperationType(OperationType operationType) {
-		this.operationType = operationType;
+	
+	public void clearOperands() {
+		this.operands.clear();
 	}
 
 }

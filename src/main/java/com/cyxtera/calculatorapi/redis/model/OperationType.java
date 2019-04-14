@@ -22,5 +22,9 @@ public enum OperationType {
 	DIVISION,
 	
 	EXPONENTIATION;
-
+	
+	public static OperationType fromLowerValueOf(String value) {
+		
+		return OperationType.valueOf(value.toUpperCase());
+	}
 }
