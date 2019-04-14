@@ -71,15 +71,17 @@ public class OperationServiceFacade {
 		return context;
 	}
 	
-	private BigDecimal execOperation(String operationType, List<BigDecimal> operands) {
+	private BigDecimal execOperation(OperationType operationType, List<BigDecimal> operands) {
 		
 		return operationService
-				.execOperation(OperationType.fromLowerValueOf(operationType), operands);
+				.execOperation(operationType, operands);
 	}
 	
 	private OperationContext updateContextOperandWithOperationResult(OperationContext context, String operationType) {
 		
-		BigDecimal result = execOperation(operationType,context.getOperands());
+		OperationType operation = OperationType.fromLowerValueOf(operationType);
+		BigDecimal result = execOperation(operation,context.getOperands());
+		context.setOperationsType(operation);
 		context.clearOperands();
 		context.attachOperand(result);
 		

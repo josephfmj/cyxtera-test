@@ -6,6 +6,7 @@
 package com.cyxtera.calculatorapi.mongo.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -27,11 +28,14 @@ public class OperationRequest {
 	
 	private Date operationDate;
 
-	public List<BigDecimal> getResultOperands() {
+	public OperationRequest() {
+		this.operands = new ArrayList<>();
+	}
+	public List<BigDecimal> getOperands() {
 		return operands;
 	}
 
-	public void setResultOperands(List<BigDecimal> operands) {
+	public void setOperands(List<BigDecimal> operands) {
 		this.operands = operands;
 	}
 
@@ -57,6 +61,11 @@ public class OperationRequest {
 
 	public void setOperationDate(Date operationDate) {
 		this.operationDate = operationDate;
+	}
+	
+	public void attachOperand(BigDecimal newValue) {
+		
+		this.operands.add(newValue);
 	}
 
 }

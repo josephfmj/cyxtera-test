@@ -5,6 +5,8 @@
  */
 package com.cyxtera.calculatorapi.mongo.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.cyxtera.calculatorapi.mongo.model.OperationsAudit;
@@ -16,5 +18,7 @@ import com.cyxtera.calculatorapi.mongo.model.OperationsAudit;
 * 
 */
 public interface OperationAuditRepository extends MongoRepository<OperationsAudit, String>{
+	
+	public Optional<OperationsAudit> findBySessionId(String sessionId);
 
 }

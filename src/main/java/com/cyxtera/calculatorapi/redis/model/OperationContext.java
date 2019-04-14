@@ -6,6 +6,7 @@
 package com.cyxtera.calculatorapi.redis.model;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -23,9 +24,14 @@ public class OperationContext {
 	@Id
 	private String sessionId;
 	
-	private String auditoryId;
-	
 	private List<BigDecimal> operands;
+	
+	private OperationType operationsType;
+	
+	public OperationContext() {
+		
+		this.operands = new ArrayList<>();
+	}
 
 	public String getSessionId() {
 		return sessionId;
@@ -33,14 +39,6 @@ public class OperationContext {
 
 	public void setSessionId(String sessionId) {
 		this.sessionId = sessionId;
-	}
-
-	public String getAuditoryId() {
-		return auditoryId;
-	}
-
-	public void setAuditoryId(String auditoryId) {
-		this.auditoryId = auditoryId;
 	}
 
 	public List<BigDecimal> getOperands() {
@@ -58,5 +56,18 @@ public class OperationContext {
 	public void clearOperands() {
 		this.operands.clear();
 	}
+	
+	public BigDecimal getLastOperand() {
+		
+		final int lastOperand = this.operands.size()-1;
+		return this.operands.get(lastOperand);
+	}
 
+	public OperationType getOperationsType() {
+		return operationsType;
+	}
+
+	public void setOperationsType(OperationType operationsType) {
+		this.operationsType = operationsType;
+	}
 }

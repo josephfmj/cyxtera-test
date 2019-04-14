@@ -79,5 +79,12 @@ public class OperationsAudit {
 	public void removeOperationRequest(OperationRequest operationRequest) {
 		this.operationRequests.remove(operationRequest);
 	}
+	
+	public OperationRequest getLastOperationRequest() {
+		
+		final int lastOperationRequest = this.operationRequests.size()-1;
+		
+		return this.operationRequests.get(lastOperationRequest);
+	}
 
 }
