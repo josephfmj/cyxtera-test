@@ -14,6 +14,7 @@ import com.cyxtera.calculatorapi.mongo.model.OperationRequest;
 import com.cyxtera.calculatorapi.mongo.model.OperationsAudit;
 import com.cyxtera.calculatorapi.mongo.repository.OperationAuditRepository;
 import com.cyxtera.calculatorapi.redis.model.OperationContext;
+import com.cyxtera.calculatorapi.redis.repository.OperationContextRespository;
 
 @Aspect
 @Component
@@ -21,6 +22,9 @@ public class OperationsAspect {
 	
 	@Autowired
 	private OperationAuditRepository operationAuditRepository;
+	
+	@Autowired
+	private OperationContextRespository operationContextRespository;
 	
 	@AfterReturning(pointcut = "com.cyxtera.calculatorapi.aop.AspectOperationFacadePointCuts"
 			+ ".operationServiceFacadeCreateSession()", returning = "sessionId")
@@ -37,7 +41,7 @@ public class OperationsAspect {
 				.ofNullable(operationAuditRepository.save(operationsAudit));
 		
 		if(!savedOperationsAudit.isPresent()) {
-			throw new IllegalArgumentException("");
+			throw new IllegalArgumentException("Auditory not found");
 		}
 	}
 	
@@ -49,6 +53,8 @@ public class OperationsAspect {
 		
 		if(ObjectUtils.anyNotNull(operationContext)) {
 			
+			operationContextRespository.save(operationContext);
+			
 			Optional<OperationsAudit> operationsAudit = operationAuditRepository
 					.findBySessionId(operationContext.getSessionId());
 			
@@ -56,11 +62,11 @@ public class OperationsAspect {
 			.map(value -> updateOperationsAuditWithOperand(value, operationContext))
 			.map(value -> operationAuditRepository.save(value))
 			.map(value -> value)
-			.orElseThrow(() -> new IllegalArgumentException(""));
+			.orElseThrow(() -> new IllegalArgumentException("Auditory not found"));
 			
 		}else{
 			
-			throw new IllegalArgumentException("");
+			throw new IllegalArgumentException("Context not found");
 		}		
 		
 		
@@ -73,7 +79,9 @@ public class OperationsAspect {
 		final OperationContext operationContext = (OperationContext) context;
 		
 		if(ObjectUtils.anyNotNull(operationContext)) {
-
+			
+			operationContextRespository.save(operationContext);
+			
 			Optional<OperationsAudit> operationsAudit = operationAuditRepository
 					.findBySessionId(operationContext.getSessionId());
 			
@@ -81,11 +89,11 @@ public class OperationsAspect {
 			.map(value -> updateOperationsAuditWithOperationResult(value,operationContext))
 			.map(value -> operationAuditRepository.save(value))
 			.map(value -> value)
-			.orElseThrow(() -> new IllegalArgumentException(""));
+			.orElseThrow(() -> new IllegalArgumentException("Auditory not found"));
 			
 		}else{
 			
-			throw new IllegalArgumentException("");
+			throw new IllegalArgumentException("Context not found");
 		}
 		
 	}

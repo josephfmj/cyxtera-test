@@ -37,7 +37,7 @@ public class OperationServiceFacade {
 		
 		return sessionId
 				.map(id -> id)
-				.orElseThrow(() -> new IllegalArgumentException(""));
+				.orElseThrow(() -> new IllegalArgumentException("Session Id not found"));
 		
 	}
 	
@@ -48,9 +48,7 @@ public class OperationServiceFacade {
 		
 		return operationContext
 				.map(context -> insertOperand(context,request.getOperand()))
-				.map(context -> operationContextRespository.save(context))
-				.map(context -> context)
-				.orElseThrow(() -> new IllegalArgumentException(""));
+				.orElseThrow(() -> new IllegalArgumentException("Context not found"));
 	}
 	
 	public OperationContext getOperationResult(String operationType, String sessionId) {
@@ -60,9 +58,7 @@ public class OperationServiceFacade {
 		
 		return operationContext
 				.map(context -> updateContextOperandWithOperationResult(context, operationType))
-				.map(context -> operationContextRespository.save(context))
-				.map(context -> context)
-				.orElseThrow(() -> new IllegalArgumentException(""));
+				.orElseThrow(() -> new IllegalArgumentException("Context not found"));
 				
 	}
 	

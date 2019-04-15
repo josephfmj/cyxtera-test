@@ -44,7 +44,7 @@ public class OperationService implements IOperationService{
 	private Optional<BigDecimal> result;
 	
 	@PostConstruct
-	private void setProvider() {
+	public void setProvider() {
 		
 		this.provider = new HashMap<>();
 		this.provider .put(OperationType.SUM, sumOperation);
