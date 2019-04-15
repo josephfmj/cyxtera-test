@@ -17,7 +17,7 @@ public enum OperationType {
 	
 	SUBSTRACT,
 	
-	MULTUIPLICATION,
+	MULTIPLICATION,
 	
 	DIVISION,
 	

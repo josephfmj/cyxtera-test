@@ -49,16 +49,19 @@ public class OperationService implements IOperationService{
 		this.provider = new HashMap<>();
 		this.provider .put(OperationType.SUM, sumOperation);
 		this.provider .put(OperationType.SUBSTRACT, substractOperation);
-		this.provider .put(OperationType.MULTUIPLICATION, multiplicyOperation);
+		this.provider .put(OperationType.MULTIPLICATION, multiplicyOperation);
 		this.provider .put(OperationType.DIVISION, divideOperation);
 		this.provider .put(OperationType.EXPONENTIATION, exponentiationOperation);
+		
 	}
 	
 	@Override
 	public BigDecimal execOperation(OperationType type, List<BigDecimal> operands) {
 		
+		this.result = Optional.empty();
+		
 		operands
-		.forEach(operand -> this.provider.get(type).operate(result, operand));
+		.forEach(operand -> this.result = Optional.ofNullable(this.provider.get(type).operate(result, operand)));
 		
 		return result
 				.map(value -> value)

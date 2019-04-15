@@ -109,6 +109,10 @@ public class OperationsAspect {
 		operationsAudit.getLastOperationRequest().setOperationsType(operationContext.getOperationsType());
 		operationsAudit.getLastOperationRequest().setOperationResult(operationContext.getLastOperand());
 		operationsAudit.getLastOperationRequest().setOperationDate(date);
+		operationsAudit.attachOperationRequest(new OperationRequest());
+		operationsAudit
+		.getLastOperationRequest()
+		.attachOperand(operationContext.getLastOperand());
 		
 		return operationsAudit;
 	}

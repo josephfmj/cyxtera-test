@@ -24,9 +24,9 @@ public class AuditController {
 		return new ResponseEntity<>(operationAuditRepository.findAll(), HttpStatus.OK);
 	}
 	
-	@GetMapping("/{auditoriId}")
+	@GetMapping("/find/{auditoriId}")
 	public ResponseEntity<OperationsAudit> findById(@PathVariable("auditoriId") String auditoriId){
-		;
+		
 		return operationAuditRepository.findById(auditoriId)
 				.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
 				.orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
