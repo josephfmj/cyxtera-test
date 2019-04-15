@@ -5,8 +5,6 @@
  */
 package com.cyxtera.calculatorapi.config;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -26,8 +24,8 @@ import org.springframework.data.redis.repository.configuration.EnableRedisReposi
  * @version 1.0
  * 
  */
+@EnableRedisRepositories(basePackages = {"com.cyxtera.calculatorapi.redis.repository"})
 @Configuration
-@EnableRedisRepositories
 public class RedisConfig {
 	
 	@Value("${spring.redis.host}")
@@ -45,23 +43,22 @@ public class RedisConfig {
 	@Autowired
 	private RedisKeyspaceConfiguration redisKeyspaceConfiguration;
 	
-	@PostConstruct
-	private void setTimeTolive() {
-		redisKeyspaceConfiguration.setTimeTolive(redisTimeToLive);
-	}
-	
 	@Bean
 	public RedisConnectionFactory connectionFactory() {
 		
 		RedisStandaloneConfiguration standaloneConfig = new RedisStandaloneConfiguration(redishostName, redisPort);
 		standaloneConfig.setPassword(redisPassword);
-	    return new JedisConnectionFactory(standaloneConfig);
+		
+		JedisConnectionFactory jedisConnectionFactory =new JedisConnectionFactory(standaloneConfig);
+	    return jedisConnectionFactory;
 	}
 
 	@Bean
 	public RedisTemplate<?, ?> redisTemplate() {
 
 		RedisTemplate<byte[], byte[]> template = new RedisTemplate<byte[], byte[]>();
+		template.setConnectionFactory(connectionFactory());
+		
 		return template;
 	}
 	
@@ -71,6 +68,7 @@ public class RedisConfig {
 	 */
 	@Bean
 	public RedisMappingContext keyValueMappingContext() {
+		redisKeyspaceConfiguration.setTimeTolive(redisTimeToLive);
 		return new RedisMappingContext(new MappingConfiguration(new IndexConfiguration(), redisKeyspaceConfiguration));
 	}
 }

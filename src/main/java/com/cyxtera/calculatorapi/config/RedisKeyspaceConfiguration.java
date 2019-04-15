@@ -7,8 +7,8 @@ package com.cyxtera.calculatorapi.config;
 
 import java.util.Collections;
 
-import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.core.convert.KeyspaceConfiguration;
+import org.springframework.stereotype.Component;
 
 import com.cyxtera.calculatorapi.redis.model.OperationContext;
 
@@ -18,7 +18,7 @@ import com.cyxtera.calculatorapi.redis.model.OperationContext;
 * @version 1.0
 * 
 */
-@Configuration
+@Component
 public class RedisKeyspaceConfiguration extends KeyspaceConfiguration {
 	
 	private long timeTolive;
