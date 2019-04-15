@@ -9,6 +9,7 @@ import java.util.Optional;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.cyxtera.calculatorapi.redis.model.OperationType;
@@ -19,18 +20,23 @@ import com.cyxtera.calculatorapi.service.IOperationService;
 public class OperationService implements IOperationService{
 	
 	@Autowired
+	@Qualifier("sum")
 	private IMathOperation sumOperation;
 	
 	@Autowired
+	@Qualifier("substract")
 	private IMathOperation substractOperation;
 	
 	@Autowired
+	@Qualifier("divide")
 	private IMathOperation divideOperation;
 	
 	@Autowired
+	@Qualifier("multiplicy")
 	private IMathOperation multiplicyOperation;
 	
 	@Autowired
+	@Qualifier("pow")
 	private IMathOperation exponentiationOperation;
 	
 	private Map<OperationType, IMathOperation> provider;
