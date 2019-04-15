@@ -1,4 +1,4 @@
-package com.cyxtera.calculatorapi.service;
+package com.cyxtera.calculatorapi.test.service;
 
 import org.junit.Before;
 import org.mockito.InjectMocks;
@@ -11,10 +11,8 @@ import static org.mockito.Mockito.when;
 
 import java.util.Optional;
 
-import com.cyxtera.calculatorapi.custom.CustomObjectMatcher;
 import com.cyxtera.calculatorapi.redis.model.OperationContext;
 import com.cyxtera.calculatorapi.redis.repository.OperationContextRespository;
-import com.cyxtera.calculatorapi.samples.OperationContextSample;
 import com.cyxtera.calculatorapi.service.facade.OperationServiceFacade;
 import com.cyxtera.calculatorapi.service.impl.DivideOperation;
 import com.cyxtera.calculatorapi.service.impl.ExponentiationOperation;
@@ -22,6 +20,8 @@ import com.cyxtera.calculatorapi.service.impl.MultiplicyOperation;
 import com.cyxtera.calculatorapi.service.impl.OperationService;
 import com.cyxtera.calculatorapi.service.impl.SubstractOperation;
 import com.cyxtera.calculatorapi.service.impl.SumOperation;
+import com.cyxtera.calculatorapi.test.custom.CustomObjectMatcher;
+import com.cyxtera.calculatorapi.test.samples.OperationContextSample;
 
 public class AbstractOperationServiceFacadeMockTest {
 	

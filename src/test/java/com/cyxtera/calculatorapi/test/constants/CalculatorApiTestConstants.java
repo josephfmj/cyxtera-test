@@ -1,4 +1,4 @@
-package com.cyxtera.calculatorapi.constants;
+package com.cyxtera.calculatorapi.test.constants;
 
 public enum CalculatorApiTestConstants {
 	

@@ -1,4 +1,4 @@
-package com.cyxtera.calculatorapi.service;
+package com.cyxtera.calculatorapi.test.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -9,10 +9,10 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.cyxtera.calculatorapi.constants.CalculatorApiTestConstants;
 import com.cyxtera.calculatorapi.redis.model.OperationContext;
 import com.cyxtera.calculatorapi.redis.model.OperationType;
-import com.cyxtera.calculatorapi.samples.AttachOperandRequestSample;
+import com.cyxtera.calculatorapi.test.constants.CalculatorApiTestConstants;
+import com.cyxtera.calculatorapi.test.samples.AttachOperandRequestSample;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

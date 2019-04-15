@@ -1,7 +1,7 @@
-package com.cyxtera.calculatorapi.samples;
+package com.cyxtera.calculatorapi.test.samples;
 
-import com.cyxtera.calculatorapi.constants.CalculatorApiTestConstants;
 import com.cyxtera.calculatorapi.model.AttachOperandRequest;
+import com.cyxtera.calculatorapi.test.constants.CalculatorApiTestConstants;
 
 public class AttachOperandRequestSample {
 	

@@ -1,9 +1,9 @@
-package com.cyxtera.calculatorapi.samples;
+package com.cyxtera.calculatorapi.test.samples;
 
 import java.math.BigDecimal;
 
-import com.cyxtera.calculatorapi.constants.CalculatorApiTestConstants;
 import com.cyxtera.calculatorapi.redis.model.OperationContext;
+import com.cyxtera.calculatorapi.test.constants.CalculatorApiTestConstants;
 
 public class OperationContextSample {
 	
