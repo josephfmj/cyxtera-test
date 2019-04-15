@@ -6,16 +6,13 @@ import org.aspectj.lang.annotation.Pointcut;
 @Aspect
 public class AspectOperationFacadePointCuts {
 	
-	@Pointcut("execution(public com.cyxtera.calculatorapi.service.facade"
-			+ ".OperationServiceFacade.createSession(..))")
+	@Pointcut("execution(* com.cyxtera.calculatorapi.service.facade.OperationServiceFacade.createSession (..))")
 	public void operationServiceFacadeCreateSession() {}
 	
-	@Pointcut("execution(public com.cyxtera.calculatorapi"
-			+ ".service.facade.OperationServiceFacade.attachOperandToSessionContext(..))")
+	@Pointcut("execution(* com.cyxtera.calculatorapi.service.facade.OperationServiceFacade.attachOperandToSessionContext (..))")
 	public void operationServiceFacadeAttachOperandToSessionContext() {}
 	
-	@Pointcut("execution(public com.cyxtera.calculatorapi.service.facade"
-			+ ".OperationServiceFacade.getOperationResult(..))")
+	@Pointcut("execution(* com.cyxtera.calculatorapi.service.facade.OperationServiceFacade.getOperationResult (..))")
 	public void operationServiceFacadeGetOperationResult() {}
 
 }

@@ -23,7 +23,7 @@ public class OperationsAspect {
 	private OperationAuditRepository operationAuditRepository;
 	
 	@AfterReturning(pointcut = "com.cyxtera.calculatorapi.aop.AspectOperationFacadePointCuts"
-			+ ".operationServiceFacadeCreateSession", returning = "sessionId")
+			+ ".operationServiceFacadeCreateSession()", returning = "sessionId")
 	public void auditSessionCreation(Object sessionId) {
 		
 		final String toSaveSessionId = String.valueOf(sessionId);
@@ -42,7 +42,7 @@ public class OperationsAspect {
 	}
 	
 	@AfterReturning(pointcut = "com.cyxtera.calculatorapi.aop.AspectOperationFacadePointCuts"
-			+ ".operationServiceFacadeAttachOperandToSessionContext", returning = "context")
+			+ ".operationServiceFacadeAttachOperandToSessionContext()", returning = "context")
 	public void auditAttachOperand(Object context) {
 		
 		final OperationContext operationContext = (OperationContext) context;
@@ -67,7 +67,7 @@ public class OperationsAspect {
 	}
 	
 	@AfterReturning(pointcut = "com.cyxtera.calculatorapi.aop.AspectOperationFacadePointCuts"
-			+ ".operationServiceFacadeGetOperationResult", returning = "context")
+			+ ".operationServiceFacadeGetOperationResult()", returning = "context")
 	public void auditOperationResult(Object context) {
 		
 		final OperationContext operationContext = (OperationContext) context;
